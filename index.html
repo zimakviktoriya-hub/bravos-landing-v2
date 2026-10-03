@@ -53,13 +53,37 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .nav-links a{font-size:14px;color:#fff;transition:color .25s ease;}
 .nav.scrolled{background:rgba(255,255,255,.94);border-color:rgba(0,0,0,.08);opacity:1;transform:none;pointer-events:auto;}
 .nav.scrolled .nav-logo,.nav.scrolled .nav-links a{color:#000;}
+.nav-price.black:hover{background:#252525;filter:none;}
 @media (max-width:900px){.nav-links{display:none;}}
 
 /* ---------- sticky bottom cta ---------- */
-.stickycta{position:fixed;left:0;right:0;bottom:-90px;z-index:190;display:flex;justify-content:center;padding:16px;
-  transition:bottom .3s ease, opacity .3s ease;opacity:0;}
-.stickycta.show{bottom:0;opacity:1;}
-.stickycta .btn{box-shadow:0 10px 30px rgba(0,0,0,.35);}
+.stickycta{display:none;}
+@media(min-width:901px){
+  .stickycta{position:fixed;left:30px;right:30px;bottom:20px;max-width:1300px;margin:0 auto;z-index:190;display:block;background:#f0f0f0;color:#161616;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.08);opacity:0;visibility:hidden;transform:translateY(calc(100% + 20px));pointer-events:none;transition:transform .25s ease,opacity .25s ease,visibility .25s;}
+  .stickycta.show{opacity:1;visibility:visible;transform:none;pointer-events:auto;}
+  .stickycta-inner{padding:28px 32px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1.1fr) minmax(0,.9fr) minmax(0,1.15fr) 216px;gap:24px;align-items:center;}
+  .stickycta h2{font-size:30px;line-height:32px;letter-spacing:0;}
+  .stickycta-benefit{display:flex;gap:12px;align-items:center;min-width:0;}
+  .stickycta-benefit img{width:44px;height:44px;flex:none;filter:invert(1);}
+  .stickycta h5{font-family:'TT Travels';font-size:18px;line-height:20px;font-weight:700;letter-spacing:0;text-transform:uppercase;}
+  .stickycta .btn{width:216px;max-width:100%;height:56px;font-size:14px;border-radius:12px;}
+}
+@media(min-width:901px) and (max-width:1390px){
+  .stickycta-inner{padding:24px;grid-template-columns:minmax(0,1.5fr) minmax(0,1.2fr) minmax(0,1fr) minmax(0,1.2fr) 180px;gap:16px;}
+  .stickycta h2{font-size:28px;line-height:30px;}
+  .stickycta-benefit img{width:36px;height:36px;}
+  .stickycta h5{font-size:16px;line-height:18px;}
+  .stickycta .btn{width:180px;}
+}
+@media(min-width:901px) and (max-width:1100px){
+  .stickycta-inner{padding:20px;grid-template-columns:minmax(0,1.5fr) minmax(0,1.2fr) minmax(0,1fr) minmax(0,1.2fr) 140px;gap:12px;}
+  .stickycta h2{font-size:20px;line-height:22px;}
+  .stickycta-benefit{gap:8px;}
+  .stickycta-benefit img{width:28px;height:28px;}
+  .stickycta h5{font-size:12px;line-height:14px;}
+  .stickycta .btn{width:140px;font-size:12px;}
+}
+@media(prefers-reduced-motion:reduce){.stickycta{transition:none;}}
 
 /* ---------- hero ---------- */
 .hero{position:relative;z-index:0;height:100vh;min-height:640px;background:#161616 url('assets/figma-hero.png') center/cover no-repeat;overflow:hidden;}
@@ -285,6 +309,17 @@ footer{background:#000;color:#fff;padding:54px 80px 0;}
 .fl a:hover{opacity:.7;}
 .fbot{max-width:1440px;margin:50px auto 0;border-top:.6px solid rgba(255,255,255,.2);padding:20px 0 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.8px;color:#9a9da3;}
 .fbot div{display:flex;gap:20px;flex-wrap:wrap;}
+body.policy-open{overflow:hidden;}
+.policy-dialog{width:800px;max-width:calc(100% - 48px);max-height:calc(100vh - 100px);margin:50px auto;padding:0;border:0;border-radius:8px;background:#fff;color:#161616;overflow:hidden;}
+.policy-dialog::backdrop{background:rgba(0,0,0,.8);}
+.policy-content{max-height:calc(100vh - 100px);padding:48px 40px 40px;overflow-y:auto;overscroll-behavior:contain;font-size:16px;line-height:20px;}
+.policy-content h2{font-size:22px;line-height:30px;font-weight:600;margin-bottom:16px;}
+.policy-content h3{font-size:16px;line-height:22px;font-weight:600;margin:36px 0 16px;}
+.policy-content ul{padding-left:20px;}
+.policy-close{position:absolute;right:12px;top:12px;width:32px;height:32px;display:grid;place-items:center;background:#fff;color:#161616;font-size:28px;line-height:1;}
+.policy-close:hover{color:var(--coral);}
+.policy-close:focus-visible,footer a:focus-visible{outline:2px solid var(--coral);outline-offset:4px;}
+@media(min-width:901px){footer .fgrid{grid-template-columns:2.2fr 1fr 1fr;}}
 @media (max-width:820px){.fgrid{grid-template-columns:1fr 1fr;row-gap:32px;}}
 @media (max-width:900px){.fcards{flex-direction:column;}.fc{min-height:150px;}.logi-row{flex-wrap:wrap;}}
 
@@ -301,6 +336,14 @@ footer{background:#000;color:#fff;padding:54px 80px 0;}
 .toast.show{transform:translate(-50%,0);visibility:visible;}
 
 @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+.quality-media{display:grid;grid-template-rows:minmax(0,1fr);gap:12px;min-width:0;min-height:0;height:100%;}
+.quality-media > .quality-image{width:100%;height:100%;min-width:0;min-height:0;object-fit:cover;border-radius:8px;}
+.quality-media--grain{grid-template-columns:1fr 1fr;}
+.quality-media--laboratory{grid-template-columns:335fr 487fr;}
+.quality-media--roasting{grid-template-columns:490fr 336fr;}
+.quality-media--packaging{grid-template-columns:414fr 318fr;}
+.quality-media--equipment{grid-template-columns:467fr 344fr;}
+.quality-video{background:#e5e5e5;}
 </style>
 <style>
 /* Screenshot-matched pricing and lower sections */
@@ -687,10 +730,15 @@ footer{margin-top:-84px;}
   .business-formats{display:block;max-width:1440px;margin:30px auto 0;padding:0 80px 20px;}
   .business-formats h2{text-align:center;font-size:50px;line-height:50px;letter-spacing:0;color:#161616;}
   .business-formats-intro{max-width:760px;margin:14px auto 0;text-align:center;font-size:16px;line-height:20px;color:#161616;}
-  .business-formats-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 24px;margin-top:66px;}
-  .business-format{height:210px;padding:24px;background:#f0f0f0;border-radius:12px;display:flex;flex-direction:column;justify-content:space-between;}
-  .business-format h3{font-size:30px;line-height:30px;letter-spacing:0;color:#000;}
-  .business-format p{font-size:14px;line-height:18px;color:#161616;}
+  .business-formats-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:223px 133px 223px;gap:10px 12px;margin-top:66px;}
+  .business-format{min-width:0;padding:24px;background:#f4f4f4;border-radius:12px;display:flex;flex-direction:column;}
+  .business-format:nth-child(1){grid-column:1;grid-row:1 / 3;}
+  .business-format:nth-child(2){grid-column:2;grid-row:1;}
+  .business-format:nth-child(3){grid-column:1;grid-row:3;}
+  .business-format:nth-child(4){grid-column:2;grid-row:2 / 4;}
+  .business-format-icon{width:40px;height:40px;flex:none;}
+  .business-format h3{margin-top:20px;flex:none;font-size:30px;line-height:30px;letter-spacing:0;color:#000;}
+  .business-format p{margin-top:auto;font-size:14px;line-height:18px;color:#161616;}
   .final .final-grid{display:grid;grid-template-columns:minmax(0,660fr) minmax(0,566fr);gap:54px;align-items:stretch;}
   .final .fbox{width:100%;max-width:none;}
   .final .final-left{max-width:none;display:flex;flex-direction:column;}
@@ -763,35 +811,29 @@ footer{margin-top:-84px;}
   #logistics .logi-card.coral h3{max-width:352px!important;line-height:30px!important;}
   #logistics .delivery-bolt{position:absolute;left:27.73%;top:-35.79%;max-width:none;pointer-events:none;z-index:1;}
   #logistics .logi-card.coral p{position:relative;z-index:2;font-size:14px!important;line-height:18px!important;max-width:420px!important;}
-  .final.lead-redesign{min-height:1000px;padding:60px 80px 100px;background:#fff;color:#000;border-radius:40px 40px 0 0;}
+  .final.lead-redesign{min-height:1000px;padding:60px 80px 100px;background:#f4f4f4;color:#000;border-radius:40px 40px 0 0;}
   .final.lead-redesign .final-grid{display:block;max-width:1280px;}
   .final.lead-redesign .final-left{display:block;max-width:none;}
   .final.lead-redesign h2{text-align:center;letter-spacing:0;color:#000;}
-  .final.lead-redesign .lead{max-width:451px;margin:10px auto 0;text-align:center;color:#333;}
-  .final.lead-redesign .fcards{display:grid;grid-template-columns:repeat(3,223px);gap:23px;width:max-content;max-width:100%;padding:0;margin:56px auto 0;}
-  .final.lead-redesign .fc{height:215px;min-height:215px;background:#f4f4f4;}
-  .final.lead-redesign .fc .ic{width:auto;height:auto;max-width:none;align-self:flex-start;margin-bottom:10px;filter:invert(1);}
-  .final.lead-redesign .fc h5{max-width:199px;font-size:18px;line-height:18px;letter-spacing:0;color:#000;}
-  .final.lead-redesign .fc:first-child h5,.final.lead-redesign .fc:last-child h5{max-width:128px;}
+  .final.lead-redesign .lead{max-width:600px;margin:16px auto 0;text-align:center;color:#333;}
+  .final.lead-redesign .fcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:600px;max-width:100%;padding:0;margin:38px auto 0;}
+  .final.lead-redesign .fc{height:212px;min-height:212px;padding:12px;background:#fff;border-radius:12px;}
+  .final.lead-redesign .fc .ic{width:36px;height:36px;max-width:none;align-self:flex-start;margin-bottom:12px;filter:invert(1);}
+  .final.lead-redesign .fc h5{max-width:152px;font-size:16px;line-height:16px;letter-spacing:0;color:#000;}
+  .final.lead-redesign .fc:first-child h5,.final.lead-redesign .fc:last-child h5{max-width:114px;}
   .final.lead-redesign .fc p{font-size:16px;line-height:20px;color:#333;}
   .final.lead-redesign .fc a{text-decoration:underline;text-underline-offset:2px;}
-  .final.lead-redesign .fbox{width:1105px;max-width:100%;margin:70px auto 0;padding:0;background:transparent;border-radius:0;}
-  .final.lead-redesign form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;row-gap:46px;}
-  .final.lead-redesign .fld{height:46px;padding:0;border-radius:0;background:transparent;border-bottom:1px solid rgba(0,0,0,.5);transition:border-color .2s;}
-  .final.lead-redesign .fld:nth-child(1){grid-column:1;grid-row:1;}
-  .final.lead-redesign .fld:nth-child(2){grid-column:1;grid-row:2;}
-  .final.lead-redesign .fld:nth-child(3){grid-column:1;grid-row:3;}
-  .final.lead-redesign .fld:nth-child(4){grid-column:2;grid-row:1;}
-  .final.lead-redesign .fld:nth-child(5){grid-column:2;grid-row:2;}
-  .final.lead-redesign .fld:nth-child(6){grid-column:2;grid-row:3;}
-  .final.lead-redesign .fld input,.final.lead-redesign .fld select{font-size:20px;color:#000;padding:0 0 8px;}
-  .final.lead-redesign .fld input::placeholder,.final.lead-redesign .fld select:not(.filled){color:rgba(0,0,0,.5);}
+  .final.lead-redesign .fbox{width:600px;max-width:100%;margin:30px auto 0;padding:24px;background:#fff;border-radius:12px;}
+  .final.lead-redesign form{display:flex;flex-direction:column;gap:8px;}
+  .final.lead-redesign .fld{height:63px;padding:0 16px;border-radius:9px;background:#f1f1f4;border:0;transition:box-shadow .2s;}
+  .final.lead-redesign .fld input,.final.lead-redesign .fld select{font-size:18px;color:#000;padding:0;}
+  .final.lead-redesign .fld input::placeholder,.final.lead-redesign .fld select:not(.filled){color:#aaa;}
   .final.lead-redesign .fld select{padding-right:32px;}
   .final.lead-redesign .fld option{background:#fff;color:#000;}
-  .final.lead-redesign .fld:focus-within{border-bottom-color:var(--coral);}
-  .final.lead-redesign .fld .chev{right:2px;top:14px;stroke:rgba(0,0,0,.5);}
-  .final.lead-redesign .fbox .btn{grid-column:1 / -1;width:519px;max-width:100%;margin:37px auto 0;font-size:14px;letter-spacing:0;}
-  .final.lead-redesign .fbox .cons{grid-column:1 / -1;max-width:446px;margin:-9px auto 0;font-size:10px;line-height:12px;color:rgba(0,0,0,.5);}
+  .final.lead-redesign .fld:focus-within{box-shadow:inset 0 0 0 1px var(--coral);}
+  .final.lead-redesign .fld .chev{right:16px;top:25.5px;stroke:#aaa;}
+  .final.lead-redesign .fbox .btn{width:100%;max-width:100%;height:56px;margin:16px 0 0;font-size:16px;letter-spacing:0;border-radius:9px;}
+  #final.lead-redesign .fbox .cons{max-width:none;margin:4px auto 0;font-size:10px!important;line-height:12px!important;color:#aaa;}
   .faq{background:#000;}
   .faq h2,.faq .fq{color:#fff;}
   .faq .fi{border-bottom-color:rgba(255,255,255,.2);}
@@ -802,11 +844,72 @@ footer{margin-top:-84px;}
   .cost-chart.in .cost-unit .cost-badge{opacity:1;transform:translateX(-50%) translateY(0);transition-delay:calc(1.1s + var(--cost-index) * 120ms);}
   .history-sticky{top:calc(var(--nav-h) + 48px);}
   footer::before{content:'';position:absolute;top:0;left:80px;right:80px;max-width:1440px;margin:0 auto;border-top:.6px solid rgba(255,255,255,.2);pointer-events:none;}
+  .hero p,#quality p,#price p:not(.history-callout),#price .bars-stage .blab i,#first-order p,#logistics .sheet-head p,#logistics .logi-card.dark p,#logistics .logi-card.coral p,#support .sheet-head p,#support .support-card .cap p,#final p,#faq .fa p,.fl{font-size:16px!important;line-height:20px!important;}
+  .history-sticky,.history-viewport,.history-track{height:390px;}
+  .history-step--october .history-callout,.history-step--october .history-accent{top:189px;}
+  .history-step--november .history-extra{top:187px;}
+  .history-step--november .history-callout,.history-step--november .history-accent{top:283px;}
+  .history-step--december .history-callout,.history-step--december .history-accent{top:185px;}
+  #price .bars-block{display:none!important;}
+  .cost-comparison{margin-top:0;padding-top:0;}
+  .cost-divider{display:none;}
+  .cost-layout{height:800px;}
+  .cost-heading{top:30px;width:400px;}
+  .cost-summary{position:absolute;left:480px;top:30px;max-width:400px;}
+  .cost-volume-arrow{position:absolute;left:320px;top:160px;width:300px;height:auto;pointer-events:none;}
+  .cost-chart{bottom:140px;}
+  .cost-retail .cost-badge{left:50%;transform:translateX(-50%);}
+  .cost-retail .cost-controls{left:50%;top:auto;bottom:-28px;transform:translateX(-50%);z-index:2;}
+  .cost-unit{height:calc(var(--cost-height) + 94px);}
+  .cost-fill{position:relative;}
+  .cost-discount{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:'TT Travels';font-size:60px;font-weight:700;line-height:1;color:#fff;white-space:nowrap;}
+  .cost-label{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;flex-basis:94px;padding:11px 10px;}
+  .cost-label b{font-size:24px;line-height:27px;}
+  .cost-label small{font-family:'Golos Text';font-size:16px;font-weight:400;line-height:20px;white-space:normal;}
+  .cost-badge{bottom:calc(var(--cost-height) + 70px);}
+  .cost-unit:last-child .cost-fill{background:var(--coral);}
+  .cost-unit:last-child .cost-badge{background:#fff;color:#161616;}
+  .cost-unit:last-child .cost-label{color:var(--coral);}
+  #price > .sheet{padding-bottom:140px;}
+  .discount-benefits{display:grid;grid-template-columns:44fr 55fr;gap:16px;max-width:1280px;margin:80px auto 0;}
+  .discount-card{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-width:0;height:366px;padding:24px;border-radius:12px;overflow:hidden;color:#fff;}
+  .discount-card--best{background:var(--coral);}
+  .discount-card--first{background:#2e2e2e;}
+  .discount-card h3{position:relative;z-index:1;font-size:30px;line-height:30px;letter-spacing:0;}
+  .discount-card p{position:relative;z-index:1;color:rgba(255,255,255,.85);}
+  .discount-card--best p{color:#fff;}
+  .discount-card--first p{max-width:430px;}
+  .discount-shape{position:absolute;right:16px;top:8px;width:320px;height:350px;object-fit:fill;pointer-events:none;}
+  #logistics .logi-row{grid-template-columns:61fr 38fr!important;gap:16px!important;}
+  #logistics .logi-card{height:366px!important;min-height:366px!important;padding:24px!important;}
+  #logistics .delivery-options{display:grid!important;grid-template-columns:52fr 48fr;padding:0!important;background:#2e2e2e;}
+  .delivery-copy{display:flex;flex-direction:column;justify-content:space-between;min-width:0;padding:24px;}
+  #logistics .delivery-copy h3{max-width:none!important;letter-spacing:0;}
+  #logistics .delivery-copy p{margin:0!important;max-width:none!important;}
+  .carrier-panel{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:44px 44px 82px 64px;gap:18px 8px;align-content:space-between;align-items:center;padding:24px 24px 24px 48px;background:#222;}
+  .carrier-panel img{display:block;width:100%;height:100%;min-width:0;object-fit:contain;}
+  .carrier-dl{grid-column:1 / -1;grid-row:1;}
+  .carrier-pek{grid-column:1 / 10;grid-row:2;}
+  .carrier-cdek{grid-column:10 / -1;grid-row:2;}
+  .carrier-post{grid-column:1 / 5;grid-row:3;}
+  .carrier-energy{grid-column:5 / -1;grid-row:3;transform:scale(1.25);}
+  .carrier-baikal{grid-column:1 / 10;grid-row:4;}
+  .carrier-kit{grid-column:10 / -1;grid-row:4;}
+  #logistics .logi-card.delivery-time h3{max-width:none!important;font-size:28px!important;line-height:30px!important;letter-spacing:0;}
+  #logistics .logi-card.delivery-time p{max-width:none!important;}
 }
 @media(min-width:901px) and (prefers-reduced-motion:reduce){
   .cost-unit .cost-badge,.cost-chart.in .cost-unit .cost-badge{opacity:1;transform:translateX(-50%);transition:none;}
 }
+@media (min-width:901px){
+  .quality-row:nth-child(1){height:488px;grid-template-columns:minmax(0,545fr) minmax(0,660fr);gap:75px;}
+  .quality-row:nth-child(2){height:624px;grid-template-columns:minmax(0,835fr) minmax(0,395fr);gap:50px;}
+  .quality-row:nth-child(3){height:624px;grid-template-columns:minmax(0,395fr) minmax(0,835fr);gap:50px;}
+  .quality-row:nth-child(4){height:559px;grid-template-columns:minmax(0,826fr) minmax(0,384fr);gap:70px;}
+  .quality-row:nth-child(5){height:470px;grid-template-columns:minmax(0,470fr) minmax(0,740fr);gap:70px;}
+}
 </style>
+<link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body>
 
@@ -814,9 +917,9 @@ footer{margin-top:-84px;}
   <div class="nav-inner">
     <svg class="nav-logo" viewBox="0 0 16933.32 4233.32" xmlns="http://www.w3.org/2000/svg"><path d="M2342.04 1188.4l1370.09 0c305.93,0 556.19,250.29 556.19,556.2 0,143.04 -54.71,273.91 -144.25,372.71 89.54,98.82 144.25,229.68 144.25,372.71 0,305.92 -250.26,556.21 -556.19,556.21l-1370.09 0 0 -366.97 1370.09 0c51.66,0 98.91,-21.42 133.36,-55.86 34.45,-34.45 55.87,-81.72 55.87,-133.38 0,-51.65 -21.42,-98.92 -55.87,-133.37 -34.45,-34.45 -81.7,-55.86 -133.36,-55.86l-1370.09 0 0 -366.96 1370.09 0c51.66,0 98.91,-21.4 133.36,-55.86 34.45,-34.45 55.87,-81.71 55.87,-133.37 0,-51.66 -21.42,-98.92 -55.87,-133.37 -34.45,-34.44 -81.7,-55.86 -133.36,-55.86l-1370.09 0 0 -366.97zm9719.17 928.25l0 0c0,162.18 -44.29,335.44 -169.96,445.27 -158.64,138.66 -393.81,175.23 -597.24,175.23 -203.42,0 -438.61,-36.57 -597.24,-175.23 -128.94,-112.71 -169.97,-279.85 -169.97,-445.27 0,-165.4 41.03,-332.54 169.97,-445.25 158.63,-138.66 393.82,-175.24 597.24,-175.24 203.43,0 438.6,36.58 597.24,175.24 125.67,109.83 169.96,283.08 169.96,445.25zm366.98 0l0 0c0,-679.3 -507.87,-987.43 -1134.18,-987.43 -626.31,0 -1134.18,308.14 -1134.18,987.43 0,678.04 506.35,987.44 1134.18,987.44 626.31,0 1134.18,-308.12 1134.18,-987.44zm1606.89 -182.82l0 0c305.94,0 556.2,250.28 556.2,556.19 0,305.92 -250.32,556.21 -556.2,556.21l-1302.12 0 0 -366.97 1302.12 0c51.66,0 98.92,-21.42 133.37,-55.86 34.45,-34.45 55.87,-81.72 55.87,-133.38 0,-51.65 -21.42,-98.92 -55.87,-133.37 -34.45,-34.45 -81.77,-55.86 -133.37,-55.86l-881.85 0c-305.87,0 -556.2,-250.27 -556.2,-556.19 0,-305.91 250.28,-556.2 556.2,-556.2l1302.14 0 0 366.97 -1302.14 0c-51.59,0 -98.91,21.42 -133.36,55.86 -34.45,34.45 -55.87,81.71 -55.87,133.37 0,51.66 21.42,98.92 55.87,133.37 34.45,34.46 81.7,55.86 133.36,55.86l881.85 0zm-5498.91 -745.43l0 0 638.13 1412.23 638.1 -1412.23 402.68 0 -839.46 1857.83 -402.68 0 -839.44 -1857.83 402.67 0zm-1726.57 1857.83l0 0 -402.69 0 -493.5 -745.44 11.16 0c305.94,0 556.2,-250.27 556.2,-556.19 0,-305.91 -250.26,-556.2 -556.2,-556.2l-1370.09 0 0 366.97 1370.09 0c51.66,0 98.92,21.42 133.37,55.86 34.45,34.45 55.86,81.71 55.86,133.37 0,51.66 -21.41,98.92 -55.86,133.37 -34.45,34.46 -81.71,55.86 -133.37,55.86l-1370.09 0 0 366.96 0 745.43 366.97 0 0 -745.43 551.89 0 493.48 745.44 440.09 0 839.45 -1857.83 402.69 0 839.45 1857.83 -402.68 0 -638.11 -1412.24 -638.11 1412.24z"/></svg>
     <div class="nav-links">
-      <a href="#product">Продукт</a><a href="#quality">Качество</a><a href="#price">Цена</a><a href="#logistics">Логистика</a>
+      <a href="#quality">Продукт</a><a href="#price">Цена</a><a href="#logistics">Логистика</a><a href="#support">Сервис</a>
     </div>
-    <a class="btn nav-price" href="#final">Получить прайс</a>
+    <a class="btn black nav-price" href="https://coffee-tea-bravos.ru/" target="_blank" rel="noopener noreferrer">В интернет-магазин</a>
   </div>
 </nav>
 
@@ -828,9 +931,9 @@ footer{margin-top:-84px;}
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.65268H154.131C188.546 6.65268 216.701 34.7891 216.701 69.1772C216.701 85.2566 210.545 99.9674 200.474 111.075C210.545 122.185 216.701 136.894 216.701 152.973C216.701 187.361 188.546 215.496 154.131 215.496H0V174.245H154.131C159.942 174.245 165.257 171.837 169.134 167.966C173.009 164.093 175.418 158.78 175.418 152.973C175.418 147.166 173.009 141.854 169.134 137.98C165.257 134.108 159.942 131.702 154.131 131.702H0V90.4487H154.131C159.942 90.4487 165.257 88.0423 169.134 84.1704C173.009 80.2967 175.418 74.9843 175.418 69.1772C175.418 63.3701 173.009 58.0576 169.134 54.184C165.257 50.3137 159.942 47.9056 154.131 47.9056H0V6.65268ZM1093.37 111.002C1093.37 129.232 1088.39 148.709 1074.25 161.056C1056.41 176.643 1029.95 180.754 1007.07 180.754C984.183 180.754 957.725 176.643 939.879 161.056C925.373 148.384 920.759 129.596 920.759 111.002C920.759 92.4073 925.373 73.619 939.879 60.947C957.725 45.3606 984.183 41.248 1007.07 41.248C1029.95 41.248 1056.41 45.3606 1074.25 60.947C1088.39 73.2948 1093.37 92.7699 1093.37 111.002ZM1134.66 111.002C1134.66 34.6371 1077.53 0 1007.07 0C936.61 0 879.475 34.6387 879.475 111.002C879.475 187.221 936.439 222 1007.07 222C1077.53 222 1134.66 187.366 1134.66 111.002ZM1315.43 90.4487C1349.85 90.4487 1378 118.585 1378 152.973C1378 187.361 1349.84 215.496 1315.43 215.496H1168.94V174.245H1315.43C1321.24 174.245 1326.56 171.837 1330.43 167.966C1334.31 164.093 1336.72 158.78 1336.72 152.973C1336.72 147.166 1334.31 141.854 1330.43 137.98C1326.56 134.108 1321.23 131.702 1315.43 131.702H1216.22C1181.81 131.702 1153.65 103.565 1153.65 69.1772C1153.65 34.7891 1181.81 6.65268 1216.22 6.65268H1362.71V47.9056H1216.22C1210.42 47.9056 1205.1 50.3137 1201.22 54.184C1197.35 58.0576 1194.94 63.3701 1194.94 69.1772C1194.94 74.9843 1197.35 80.2967 1201.22 84.1704C1205.1 88.0423 1210.41 90.4487 1216.22 90.4487H1315.43ZM696.819 6.65268L768.607 165.406L840.391 6.65268H885.692L791.255 215.496H745.955L651.52 6.65268H696.819ZM502.587 215.496H457.284L401.769 131.702H403.023C437.44 131.702 465.594 103.565 465.594 69.1772C465.594 34.7891 437.44 6.65268 403.023 6.65268H248.893V47.9056H403.023C408.834 47.9056 414.151 50.3137 418.027 54.184C421.902 58.0576 424.31 63.3701 424.31 69.1772C424.31 74.9843 421.902 80.2967 418.027 84.1704C414.151 88.0423 408.834 90.4487 403.023 90.4487H248.893V215.494H290.176V131.702H352.262L407.776 215.496H457.284L551.72 6.65268H597.021L691.456 215.496H646.157L574.371 56.7425L502.587 215.496Z" fill="white"/>
 </svg>
 
-    <h1 class="tt">Кофе — на нас<br>Бизнес — на вас</h1>
-    <p>Получаете кофе напрямую от обжарщика — со стабильным вкусом от партии к партии, понятными условиями поставки и поддержкой после поставки</p>
-    <a class="btn hero-btn" href="#final">Получить оптовый прайс</a>
+    <h1 class="tt">Жарим кофе<br>для&nbsp;бизнеса</h1>
+    <p>Контролируем вкус от партии к партии, соблюдаем условия поставки<br>и&nbsp;остаёмся на&nbsp;связи после неё</p>
+    <a class="btn hero-btn" href="#final">Запросить цену</a>
   </div>
 </header>
 
@@ -838,11 +941,11 @@ footer{margin-top:-84px;}
 <div class="pillar" id="quality">
 <section class="sheet white">
   <div class="stats-row">
-    <div class="stat"><div class="tt">10 лет</div><p>Производим кофе</p></div>
+    <div class="stat"><div class="tt"><span class="stat-value">10</span> <span class="stat-unit">лет</span></div><p>Производим кофе</p></div>
     <div class="statline"></div>
-    <div class="stat"><div class="tt">590 клиентов</div><p>По всей России</p></div>
+    <div class="stat"><div class="tt"><span class="stat-value">590</span> <span class="stat-unit">клиентов</span></div><p>По всей России</p></div>
     <div class="statline"></div>
-    <div class="stat"><div class="tt">83 региона</div><p>Куда возим кофе регулярно</p></div>
+    <div class="stat"><div class="tt"><span class="stat-value">83</span> <span class="stat-unit">региона</span></div><p>Куда возим кофе регулярно</p></div>
   </div>
 
   <div class="sheet-head">
@@ -854,26 +957,35 @@ footer{margin-top:-84px;}
     <article class="quality-row quality-row--wide">
       <div class="quality-copy">
         <h3 class="tt">Хороший кофе начинается<br>с хорошего зерна</h3>
-        <p class="p14">От плантации до пачки — всё под нашим контролем.<br>Сами отбираем зерно, тестируем новые поставки, фиксируем профили обжарки и упаковываем кофе в азотной среде.<br>Так каждая следующая партия сохраняет привычный вам вкус</p>
+        <p class="p14">От плантации до пачки — всё под нашим контролем.<br>Сами отбираем зерно, тестируем новые поставки, фиксируем профили обжарки и упаковываем кофе в азотной среде. <br class="mobile-join">Так каждая следующая партия сохраняет привычный вам вкус</p>
       </div>
-      <img class="quality-image" src="assets/quality-harvest.png" alt="Сбор кофейных ягод на плантации" loading="lazy">
+      <div class="quality-media quality-media--grain">
+        <video class="quality-image quality-video" autoplay muted loop playsinline preload="none" poster="assets/quality-video-1-poster.webp" data-video-src="assets/quality-video-1-trimmed.mp4" aria-label="Работа с зелёным кофе"></video>
+        <img class="quality-image" src="assets/quality-warehouse.webp" alt="Мешки зелёного кофе на складе" loading="lazy" decoding="async">
+      </div>
     </article>
     <article class="quality-row quality-row--split">
-      <img class="quality-image" src="assets/quality-laboratory.png" alt="Дегустационная обжарка кофейных зерен" loading="lazy">
+      <div class="quality-media quality-media--laboratory">
+        <img class="quality-image" src="assets/quality-green-beans.webp" alt="Зелёные кофейные зёрна" loading="lazy" decoding="async">
+        <img class="quality-image" src="assets/quality-cupping.webp" alt="Кофе и прибор для проверки экстракции" loading="lazy" decoding="async">
+      </div>
       <div class="quality-copy">
         <h3 class="tt">Лаборатория вкуса</h3>
-        <div class="quality-description"><p class="p14">Новое зерно сначала проверяем отдельно. Обжариваем пробу, дегустируем и оцениваем её характеристики. Если зерно не соответствует нашим требованиям,<br>не&nbsp;закупаем его.</p><p class="p14">В команде есть Q-grader — специалист<br>по&nbsp;профессиональной оценке кофе. Так мы понимаем качество зерна ещё до того, как запускаем его в&nbsp;производство</p></div>
+        <div class="quality-description"><p class="p14">Новое зерно сначала проверяем отдельно. Обжариваем пробу, дегустируем и оцениваем её характеристики. Если зерно не соответствует нашим требованиям, не&nbsp;закупаем его.</p><p class="p14">В команде есть Q-grader — специалист<br>по&nbsp;профессиональной оценке кофе. Так мы понимаем качество зерна ещё до того, как запускаем его в&nbsp;производство</p></div>
       </div>
     </article>
     <article class="quality-row quality-row--wide">
       <div class="quality-copy">
         <h3 class="tt">Стабильная обжарка</h3>
-        <div class="quality-description"><p class="p14">Хороший вкус нужно не только получить, но и повторить. Для каждого кофе подбираем профиль обжарки и фиксируем его в Cropster — системе, которая записывает параметры каждой обжарки и помогает сравнивать партии между собой. Смотрим, как меняется температура и развивается зерно, сравниваем каждую новую партию с эталонным профилем и видим отклонения.</p><p class="p14">Новое сырьё сначала обжариваем небольшим объёмом, проверяем результат и только потом масштабируем.<br>Так мы можем снова и снова воспроизводить нужный профиль обжарки</p></div>
+        <div class="quality-description"><p class="p14">Хороший вкус нужно не только получить, но и повторить. Для каждого кофе подбираем профиль обжарки и фиксируем его в Cropster — системе, которая записывает параметры каждой обжарки и помогает сравнивать партии между собой. Смотрим, как меняется температура и развивается зерно, сравниваем каждую новую партию с эталонным профилем и видим отклонения.</p><p class="p14">Новое сырьё сначала обжариваем небольшим объёмом, проверяем результат и только потом масштабируем. Так мы можем снова и снова воспроизводить нужный профиль обжарки</p></div>
       </div>
-      <div class="quality-image-pair"><img class="quality-image" src="assets/quality-roasting-detail.png" alt="Кофейные зерна в ростере" loading="lazy"><img class="quality-image" src="assets/quality-roasting-machine.png" alt="Загрузка зерна в ростер" loading="lazy"></div>
+      <div class="quality-media quality-media--roasting"><img class="quality-image" src="assets/quality-roaster-controls.webp" alt="Ростер BRAVOS и контроль обжарки" loading="lazy" decoding="async"><img class="quality-image" src="assets/quality-profile-control.webp" alt="Проверка профиля обжарки" loading="lazy" decoding="async"></div>
     </article>
     <article class="quality-row quality-row--split">
-      <img class="quality-image" src="assets/quality-equipment.png" alt="Промышленный ростер для кофе" loading="lazy">
+      <div class="quality-media quality-media--equipment">
+        <img class="quality-image" src="assets/quality-roaster-portrait.webp" alt="Производственный ростер BRAVOS" loading="lazy" decoding="async">
+        <video class="quality-image quality-video" autoplay muted loop playsinline preload="none" poster="assets/quality-video-2-poster.webp" data-video-src="assets/quality-video-2.mp4" aria-label="Обжарка кофе на производстве"></video>
+      </div>
       <div class="quality-copy">
         <h3 class="tt">Современное оборудование —<br>под каждую задачу</h3>
         <div class="quality-description"><p class="p14">У нас четыре ростера, и каждый отвечает за свою задачу. Два воздушных PRIME на 20 и 30 кг используем для основной обжарки эспрессо и MILK — от средней до тёмной. BESCA на 6 кг — для кофе под фильтр. Nucleus LINK — лабораторный ростер для пробных обжарок: на нём тестируем образцы зелёного кофе и новые поставки небольшими объёмами, прежде чем запускать их в производство.</p><p class="p14">Так подбираем оборудование под конкретный кофе и задачу — от первой пробы зерна до производственной обжарки</p></div>
@@ -882,9 +994,12 @@ footer{margin-top:-84px;}
     <article class="quality-row quality-row--wide">
       <div class="quality-copy">
         <h3 class="tt">Упаковка с азотом</h3>
-        <p class="p14">После обжарки важно сохранить вкус и аромат кофе. Упаковываем готовый кофе в азотной среде. Азот вытесняет кислород и помогает защитить кофе от его воздействия.<br>Так&nbsp;кофе дольше сохраняет свойства свежей обжарки</p>
+        <p class="p14">После обжарки важно сохранить вкус и аромат кофе. Упаковываем готовый кофе в азотной среде. Азот вытесняет кислород и помогает защитить кофе от его воздействия. Так&nbsp;кофе дольше сохраняет свойства свежей обжарки</p>
       </div>
-      <img class="quality-image" src="assets/quality-packaging.png" alt="Кофейные зерна в упаковке" loading="lazy">
+      <div class="quality-media quality-media--packaging">
+        <img class="quality-image" src="assets/quality-packaging-operator.webp" alt="Сотрудник у упаковочной машины" loading="lazy" decoding="async">
+        <video class="quality-image quality-video" autoplay muted loop playsinline preload="none" poster="assets/quality-video-4-poster.webp" data-video-src="assets/quality-video-4.mp4" aria-label="Упаковка кофе в азотной среде"></video>
+      </div>
     </article>
   </div>
 
@@ -923,33 +1038,37 @@ footer{margin-top:-84px;}
 
   <div class="lines-head" id="product">
     <h3 class="tt" style="flex:0 0 465px;">Кофе под вашу задачу — уже в готовых линейках</h3>
-    <p class="p14" style="flex:0 1 413px;margin-top:4px;">Не нужно разбираться в десятках сортов и профилей.<br>Мы собрали четыре линейки с разным характером вкуса —<br>для эспрессо, молочных напитков, фильтра</p>
+    <p class="p14" style="flex:0 1 413px;margin-top:4px;">Не нужно разбираться в десятках сортов и профилей. Мы собрали четыре линейки с разным характером вкуса — для эспрессо, молочных напитков, фильтра</p>
   </div>
   <div class="lines-grid">
-    <div class="line-card c-espresso" style="background-image:url('assets/image-54e9e6616137.webp')"><h4 class="tt">Espresso coffee</h4><p>Яркий и сбалансированный —<br>для хорошего эспрессо и любимых напитков на его основе</p></div>
+    <div class="line-card c-espresso" style="background-image:url('assets/image-54e9e6616137.webp')"><h4 class="tt">Espresso coffee</h4><p>Яркий и сбалансированный — <br class="mobile-join">для хорошего эспрессо и любимых напитков на его основе</p></div>
     <div class="line-card c-milk" style="background-image:url('assets/image-c1b30c09e8f2.webp')"><h4 class="tt">Milk coffee</h4><p>Насыщенный и сладкий — чтобы вкус кофе не терялся в капучино и латте</p></div>
     <div class="line-card c-filter" style="background-image:url('assets/image-d3c29cbad53c.webp')"><h4 class="tt">Filter coffee</h4><p>Чистый и ароматный — для фильтра, где можно почувствовать больше оттенков вкуса</p></div>
-    <div class="line-card c-blend" style="background-image:url('assets/image-dd531cc9c6e8.webp')"><h4 class="tt">Blend coffee</h4><p>Стабильный вкус всегда — составляем бленды так, чтобы каждая новая партия была похожа на предыдущую</p></div>
+    <div class="line-card c-blend" style="background-image:url('assets/image-dd531cc9c6e8.webp')"><h4 class="tt">Blend coffee</h4><p>Стабильный вкус всегда — составляем бленды так, чтобы каждая новая партия была <span class="blend-ending">похожа на предыдущую</span></p></div>
   </div>
   <section class="business-formats" aria-labelledby="business-formats-title">
     <h2 class="tt" id="business-formats-title">Кофе под задачи<br>вашего бизнеса</h2>
     <p class="business-formats-intro">Работаем с разными форматами бизнеса — от независимых кофеен до крупных сетей<br>и оптовых партнёров. Для каждого свои объёмы, ассортимент и условия работы</p>
     <div class="business-formats-grid">
       <article class="business-format">
-        <h3 class="tt">Кофейни и рестораны</h3>
+        <img class="business-format-icon" src="assets/business-cafe.svg" alt="" aria-hidden="true" loading="lazy">
+        <h3 class="tt">Кофейни<br>и рестораны</h3>
         <p>Кофе под ваше меню и оборудование, пробники,<br>настройка и поддержка команды</p>
       </article>
       <article class="business-format">
+        <img class="business-format-icon" src="assets/business-chain.svg" alt="" aria-hidden="true" loading="lazy">
         <h3 class="tt">Сети кофеен</h3>
-        <p>Стабильный вкус во всех точках, нужные объёмы и<br>понятные условия регулярных поставок</p>
+      <p>Стабильный вкус во всех точках, нужные объёмы<br>и&nbsp;понятные условия регулярных поставок</p>
       </article>
       <article class="business-format">
+        <img class="business-format-icon" src="assets/business-distributor.svg" alt="" aria-hidden="true" loading="lazy">
         <h3 class="tt">Дистрибьюторы</h3>
-        <p>Ассортимент для дальнейших продаж, оптовые условия<br>и работа с крупными объёмами</p>
+        <p>Ассортимент для дальнейших продаж, оптовые <br class="mobile-join">условия и работа с крупными объёмами</p>
       </article>
       <article class="business-format">
-        <h3 class="tt">Оптовые покупатели</h3>
-        <p>Выгодные условия на объём, регулярные поставки<br>и широкий ассортимент в одном заказе</p>
+        <img class="business-format-icon" src="assets/business-wholesale.svg" alt="" aria-hidden="true" loading="lazy">
+        <h3 class="tt">Оптовые<br>покупатели</h3>
+        <p>Выгодные условия на объём, регулярные поставки <br class="mobile-join">и широкий ассортимент в одном заказе</p>
       </article>
     </div>
   </section>
@@ -961,7 +1080,7 @@ footer{margin-top:-84px;}
 <section class="sheet dark">
   <div class="sheet-head">
     <h2 class="tt h1">Понятные цены<br>для бизнеса любого масштаба</h2>
-    <p class="p16 on-dark">Система скидок устроена так, чтобы условия были понятны заранее. На цену влияют объём закупки и заказы прошлого месяца, а новым клиентам сразу доступна максимальная скидка</p>
+    <p class="p16 on-dark">Чем больше кофе закупаете, тем ниже цена за килограмм. При следующих заказах учитываем объём прошлого месяца, а начать можно сразу с максимальной скидки — 42%</p>
     <a class="btn" href="#final">Получить прайс</a>
   </div>
 
@@ -1055,83 +1174,41 @@ footer{margin-top:-84px;}
     <img class="cost-divider" src="assets/pricing-divider.svg" alt="" aria-hidden="true">
     <div class="cost-layout">
       <div class="cost-heading">
-        <h3 class="tt" id="cost-title">Реальный расчёт оптовой стоимости</h3>
-        <p class="p14 on-dark" id="cost-description">на примере кофе 1 упаковки<br>кофе Уганда Робуста 1000 грамм</p>
+        <h3 class="tt" id="cost-title">Цена, которая<br>зависит от объёма</h3>
       </div>
-      <div class="cost-controls" aria-label="Выбор кофе">
-        <button type="button" class="cost-prev" aria-label="Предыдущий кофе" title="Предыдущий кофе" disabled><img src="assets/cost-prev.svg" alt=""></button>
-        <button type="button" class="cost-next" aria-label="Следующий кофе" title="Следующий кофе" disabled><img src="assets/cost-next.svg" alt=""></button>
-      </div>
+      <p class="p14 on-dark cost-summary">Чем больше кофе вы покупаете, тем ниже цена за килограмм. Размер скидки зависит<br>от вашего месячного объёма</p>
+      <img class="cost-volume-arrow" src="assets/pricing-volume-arrow.svg" alt="" aria-hidden="true">
       <div class="cost-chart" role="group" aria-label="Стоимость упаковки при разных объёмах закупки">
         <div class="cost-retail">
           <p class="p14 on-dark cost-retail-caption">розничная цена</p>
-          <div class="cost-badge"><b id="cost-retail-price">2363 ₽</b></div>
+          <div class="cost-badge"><b id="cost-retail-price">2490 ₽</b></div>
           <img class="cost-jar" src="assets/cost-uganda-robusta.png" alt="Кофе Уганда Робуста, 1000 грамм" loading="lazy">
-        </div>
-        <div class="cost-unit" style="--cost-height:113px;--cost-index:0"><div class="cost-badge"><b>2068 ₽</b><s>2363 ₽</s></div><div class="cost-fill"></div><div class="cost-label">3–25 кг</div></div>
-        <div class="cost-unit" style="--cost-height:184px;--cost-index:1"><div class="cost-badge"><b>1880 ₽</b><s>2363 ₽</s></div><div class="cost-fill"></div><div class="cost-label">25–100 кг</div></div>
-        <div class="cost-unit" style="--cost-height:272px;--cost-index:2"><div class="cost-badge"><b>1645 ₽</b><s>2363 ₽</s></div><div class="cost-fill"></div><div class="cost-label">100–300 кг</div></div>
-        <div class="cost-unit" style="--cost-height:366px;--cost-index:3"><div class="cost-badge"><b>1438 ₽</b><s>2363 ₽</s></div><div class="cost-fill"></div><div class="cost-label">300–1000 кг</div></div>
-        <div class="cost-unit" style="--cost-height:484px;--cost-index:4"><div class="cost-badge"><b>1316₽</b><s>2363 ₽</s></div><div class="cost-fill"></div><div class="cost-label">1000 кг+</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="purchase-history" aria-labelledby="history-title">
-    <div class="purchase-history-head">
-      <h3 class="tt" id="history-title">Учитываем больше, чем текущий заказ</h3>
-      <p class="p14 on-dark">Смотрим на объём ваших предыдущих закупок и сравниваем условия, чтобы предложить более выгодную цену</p>
-    </div>
-    <div class="history-scroll">
-      <div class="history-sticky">
-        <div class="history-viewport" tabindex="0" aria-label="История закупок и справка">
-          <div class="history-track">
-            <img class="history-line history-line--october" src="assets/timeline-line-289.svg" alt="" aria-hidden="true">
-            <img class="history-line history-line--november" src="assets/timeline-line-480.svg" alt="" aria-hidden="true">
-            <img class="history-line history-line--december" src="assets/timeline-line-432.svg" alt="" aria-hidden="true">
-            <article class="history-step history-step--october">
-              <span class="history-tag">Октябрь</span>
-              <p class="p14 on-dark history-copy">Представим, в октябре вы заказали 1000 кг кофе</p>
-              <img class="history-accent" src="assets/timeline-accent-55.svg" alt="" aria-hidden="true">
-              <p class="history-callout">и получили<br>скидку — 42%</p>
-            </article>
-            <article class="history-step history-step--november">
-              <span class="history-tag">Ноябрь</span>
-              <p class="p14 on-dark history-copy">В ноябре кофе нужно меньше — всего 250 кг. Обычно при таком объёме скидка была бы 27%.</p>
-              <p class="p14 on-dark history-extra">Но мы смотрим не только на текущий заказ. Мы видим, сколько вы закупили у нас в прошлом месяце, сравниваем условия и выбираем более выгодный вариант для вас.</p>
-              <img class="history-accent" src="assets/timeline-accent-80.svg" alt="" aria-hidden="true">
-              <p class="history-callout">Поэтому в ноябре<br>на заказ 250 кг вы снова получаете скидку — 42%</p>
-            </article>
-            <article class="history-step history-step--december">
-              <span class="history-tag">Декабрь</span>
-              <p class="p14 on-dark history-copy">А в следующем месяце всё считается заново: смотрим на ваш новый заказ и предыдущие закупки</p>
-              <img class="history-accent" src="assets/timeline-accent-55.svg" alt="" aria-hidden="true">
-              <p class="history-callout">и предлагаем лучшую доступную цену</p>
-            </article>
-            <aside class="history-step history-step--note" aria-label="Справка">
-              <span class="history-note-label">Справка</span>
-              <img class="history-heart" src="assets/timeline-heart.svg" alt="" aria-hidden="true">
-              <p class="p14 on-dark history-copy">Вам не нужно каждый месяц заново набирать большой объём, чтобы получить хорошую цену</p>
-              <img class="history-accent" src="assets/timeline-accent-79.svg" alt="" aria-hidden="true">
-              <p class="history-callout">Так ваши прошлые закупки продолжают работать на вас</p>
-            </aside>
+          <div class="cost-controls" aria-label="Выбор кофе">
+            <button type="button" class="cost-prev" aria-label="Предыдущий кофе" title="Предыдущий кофе" disabled><img src="assets/cost-prev.svg" alt=""></button>
+            <button type="button" class="cost-next" aria-label="Следующий кофе" title="Следующий кофе" disabled><img src="assets/cost-next.svg" alt=""></button>
           </div>
         </div>
+        <div class="cost-unit" style="--cost-height:113px;--cost-index:0"><div class="cost-badge"><b>1756 ₽</b><s>2490 ₽</s></div><div class="cost-fill"><span class="cost-discount">−8%</span></div><div class="cost-label"><b>3–25 кг</b><small>Разовая проба / старт</small></div></div>
+        <div class="cost-unit" style="--cost-height:184px;--cost-index:1"><div class="cost-badge"><b>1596 ₽</b><s>2490 ₽</s></div><div class="cost-fill"><span class="cost-discount">−17%</span></div><div class="cost-label"><b>25–100 кг</b><small>Одна точка</small></div></div>
+        <div class="cost-unit" style="--cost-height:272px;--cost-index:2"><div class="cost-badge"><b>1397 ₽</b><s>2490 ₽</s></div><div class="cost-fill"><span class="cost-discount">−27%</span></div><div class="cost-label"><b>100–300 кг</b><small>Несколько точек</small></div></div>
+        <div class="cost-unit" style="--cost-height:366px;--cost-index:3"><div class="cost-badge"><b>1221 ₽</b><s>2490 ₽</s></div><div class="cost-fill"><span class="cost-discount">−36%</span></div><div class="cost-label"><b>300–1000 кг</b><small>Сеть</small></div></div>
+        <div class="cost-unit" style="--cost-height:484px;--cost-index:4"><div class="cost-badge"><b>1117 ₽</b><s>2490 ₽</s></div><div class="cost-fill"><span class="cost-discount">−42%</span></div><div class="cost-label"><b>1000 кг+</b><small>Крупный опт</small></div></div>
       </div>
     </div>
   </section>
 
-</section>
-</div>
+  <section class="discount-benefits" aria-label="Условия скидок">
+    <article class="discount-card discount-card--best">
+      <h3 class="tt">Вы получаете лучшую<br>из доступных скидок</h3>
+      <p class="p16">Рассчитываем скидку двумя способами: по объёму текущего заказа и по объёму закупок за предыдущий месяц. Сравниваем оба варианта и применяем тот, где ваша цена ниже</p>
+    </article>
+    <article class="discount-card discount-card--first">
+      <img class="discount-shape" src="assets/discount-shape.png" alt="" aria-hidden="true" loading="lazy">
+      <h3 class="tt">Скидка на первый<br>заказ −42%</h3>
+      <p class="p16">Мы всегда рады новым клиентам и понимаем, что переходить от привычного поставщика непросто. Поэтому первый заказ можно оформить со скидкой 42% — независимо от объёма. Можно спокойно попробовать кофе в работе и оценить, насколько он подходит вашему бизнесу</p>
+    </article>
+  </section>
 
-<!-- FIRST ORDER: SCROLL OVERLAP -->
-<div class="pillar" id="first-order">
-<section class="sheet first-order-sheet" aria-labelledby="first-order-title">
-  <div class="first-order-content">
-    <h2 class="tt" id="first-order-title">Скидка<br>на первый заказ −42%</h2>
-    <p class="p16 on-dark">Мы всегда рады новым клиентам и понимаем, что переходить от привычного поставщика непросто. Поэтому первый заказ можно оформить со скидкой 42% — независимо от объёма. Можно спокойно попробовать кофе в работе и оценить, насколько он подходит вашему бизнесу</p>
-    <a class="btn black" href="#final">Получить скидку</a>
-  </div>
 </section>
 </div>
 
@@ -1139,23 +1216,30 @@ footer{margin-top:-84px;}
 <div class="pillar" id="logistics">
 <section class="sheet white">
   <div class="sheet-head">
-    <h2 class="tt h1">Доставим от Рязани в любую точку России</h2>
+    <h2 class="tt h1">От Рязани до любой точки<br>России и Беларуси</h2>
     <p class="p16">Отправляем заказы по всей стране, включая новые регионы. Можно выбрать транспортную компанию или забрать кофе самостоятельно</p>
     <a class="btn" href="#final">Получить прайс</a>
   </div>
   <div class="logi-row">
-    <div class="logi-card dark" style="flex:1 1 412px;">
-      <div class="logi-top"><h3 class="tt">Выбираете удобную доставку</h3><svg class="logi-ico-svg" width="379" height="279" viewBox="0 0 379 279" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M318.053 121.294C351.406 121.294 379 94.0745 379 60.647C379 27.4583 351.406 0 318.053 0C284.58 0 257.106 27.3389 257.106 60.647C257.106 93.8357 285.06 121.294 318.053 121.294ZM346.487 69.9589H317.453C313.254 69.9589 310.015 66.7356 310.015 62.5571V25.4288C310.015 21.3697 313.374 18.2657 317.453 18.2657C321.532 18.2657 324.891 21.3697 324.891 25.4288V55.2747H346.487C350.566 55.2747 353.925 58.6175 353.925 62.5571C353.925 66.6162 350.686 69.9589 346.487 69.9589ZM349.366 217.159V131.083C339.768 135.262 329.211 137.65 318.173 137.65C275.942 137.65 240.789 102.67 240.789 60.647C240.789 49.0668 243.429 37.9641 248.228 28.0552H157.047C135.571 28.0552 124.414 39.2773 124.414 60.5276V213.1C132.092 221.218 136.171 232.321 136.171 244.498C136.171 246.169 136.051 247.841 135.811 249.512H212.235C211.995 247.96 211.875 246.289 211.875 244.617C211.875 217.995 233.591 196.267 260.345 196.267C287.099 196.267 308.935 217.995 308.935 244.617C308.935 246.289 308.815 247.96 308.575 249.512H316.733C338.209 249.512 349.366 238.41 349.366 217.159ZM107.977 93.9551H76.064C64.3064 93.9551 56.3881 96.7009 49.3096 104.58L8.51822 150.424C1.91961 157.825 0 163.317 0 175.017V217.159C0 238.29 11.0377 249.512 32.1532 249.512H39.4717C39.2317 247.841 39.1118 246.169 39.1118 244.498C39.1118 217.875 61.427 196.148 88.1814 196.148C95.3799 196.148 102.218 198.058 107.977 201.281V93.9551ZM76.9038 170.122H23.1551C23.635 167.376 24.9547 165.108 26.8743 162.959L63.4666 122.13C68.1456 116.996 71.7449 116.041 77.2637 116.041H87.8215V159.258C87.8215 166.063 83.6224 170.122 76.9038 170.122ZM87.7015 279C106.777 279 122.254 263.48 122.254 244.498C122.254 225.516 106.777 210.116 87.7015 210.116C68.6255 210.116 53.1488 225.516 53.1488 244.498C53.1488 263.599 68.5056 279 87.7015 279ZM260.345 279C279.421 279 294.898 263.48 294.898 244.617C294.898 225.635 279.421 210.235 260.345 210.235C241.269 210.235 225.792 225.635 225.792 244.617C225.792 263.599 241.149 279 260.345 279Z" fill="currentColor" fill-opacity="0.1"/>
-</svg></div>
-      <p class="p14">Отправляем через ПЭК, Деловые линии и СДЭК. Стоимость доставки рассчитывается по тарифам выбранной транспортной компании и оплачивается отдельно. Можно выбрать удобный вариант или забрать заказ самостоятельно в Рязани. Самовывоз — бесплатно</p>
+    <div class="logi-card dark delivery-options">
+      <div class="delivery-copy">
+        <h3 class="tt">Выбираете<br>удобную доставку</h3>
+        <p class="p14">Отправляем через ПЭК, Деловые линии и СДЭК. Стоимость доставки рассчитывается по тарифам выбранной транспортной компании и оплачивается отдельно. Можно выбрать удобный вариант или забрать заказ самостоятельно в Рязани. Самовывоз — бесплатно</p>
+      </div>
+      <div class="carrier-panel" aria-label="Транспортные компании">
+        <img class="carrier-dl" src="assets/carrier-delovye-linii.svg" alt="Деловые линии" loading="lazy">
+        <img class="carrier-pek" src="assets/carrier-pek.svg" alt="ПЭК" loading="lazy">
+        <img class="carrier-cdek" src="assets/carrier-cdek.svg" alt="СДЭК" loading="lazy">
+        <img class="carrier-post" src="assets/carrier-russian-post.svg" alt="Почта России" loading="lazy">
+        <img class="carrier-energy" src="assets/carrier-energy.svg" alt="Энергия" loading="lazy">
+        <img class="carrier-baikal" src="assets/carrier-baikal.svg" alt="Байкал Сервис" loading="lazy">
+        <img class="carrier-kit" src="assets/carrier-kit.svg" alt="КИТ" loading="lazy">
+      </div>
     </div>
-    <div class="logi-card coral" style="flex:0 1 302px;">
-      <img class="delivery-bolt" src="assets/delivery-lightning.png" width="560" height="621" alt="" loading="lazy">
-      <h3 class="tt">Изготовим<br>и отправим<br>за 48 часов</h3>
+    <div class="logi-card coral delivery-time">
+      <h3 class="tt">Изготовим<br>и отправим за 48 часов</h3>
       <p class="p14">После оплаты запускаем заказ в производство.<br>Готовим и передаём его в&nbsp;доставку в&nbsp;течение 48 часов</p>
     </div>
-    <div class="logi-card photo" style="flex:1 1 519px;background-image:url('assets/image-2fe31910dbcc.webp');"></div>
   </div>
 </section>
 </div>
@@ -1164,7 +1248,7 @@ footer{margin-top:-84px;}
 <div class="pillar" id="support">
 <section class="sheet dark">
   <div class="sheet-head">
-    <h2 class="tt h1">Поддержим на старте<br>и дальше</h2>
+    <h2 class="tt h1">Поддержка на всех этапах</h2>
     <p class="p16 on-dark">Поможем запустить кофе в работу: настроим оборудование, подберём рецепты под ваше меню и обучим команду. После поставки тоже остаёмся на связи</p>
     <a class="btn" href="#final">Получить прайс</a>
   </div>
@@ -1176,7 +1260,7 @@ footer{margin-top:-84px;}
     </article>
     <article class="support-card">
       <div class="ph"></div>
-      <div class="cap"><h3 class="tt">Сначала попробуете — потом закажете</h3><p class="p14 on-dark">Высылаем пробники, чтобы вы могли попробовать кофе на своём оборудовании и выбрать подходящий вариант</p></div>
+      <div class="cap"><h3 class="tt">Отправим кофе на пробу</h3><p class="p14 on-dark">Высылаем пробники, чтобы вы могли попробовать кофе на своём оборудовании и выбрать подходящий вариант</p></div>
     </article>
     <article class="support-card">
       <div class="ph"></div>
@@ -1194,7 +1278,7 @@ footer{margin-top:-84px;}
         </div>
         <div class="panel">
           <div class="ph" style="background-image:url('assets/image-899f4f4b5bf1.png')"></div>
-          <div class="cap"><h3 class="tt" style="color:#fff;">Сначала попробуете — потом закажете</h3>
+          <div class="cap"><h3 class="tt" style="color:#fff;">Отправим кофе на пробу</h3>
           <p class="p14 on-dark">Высылаем пробники, чтобы вы могли попробовать кофе на своём оборудовании и выбрать подходящий вариант</p></div>
         </div>
         <div class="panel">
@@ -1240,7 +1324,7 @@ footer{margin-top:-84px;}
         </div>
         <div class="fc">
           <img class="ic manager-icon" src="assets/lead-profile.svg" alt="" loading="lazy">
-          <h5>Личный менеджер</h5><p>Алексей Костиков —<br>на&nbsp;связи по заказам и&nbsp;поставкам<br><a href="tel:+79036412728">8 (903) 641-27-28</a></p>
+          <h5><span>Личный</span> <span>менеджер</span></h5><p>Алексей Костиков —<br>на&nbsp;связи по заказам и&nbsp;поставкам<br><a href="tel:+79036412728">8 (903) 641-27-28</a></p>
         </div>
       </div>
     </div>
@@ -1277,12 +1361,49 @@ footer{margin-top:-84px;}
 <footer>
   <div class="fgrid">
     <div><svg class="logo" viewBox="0 0 16933.32 4233.32" xmlns="http://www.w3.org/2000/svg"><path d="M2342.04 1188.4l1370.09 0c305.93,0 556.19,250.29 556.19,556.2 0,143.04 -54.71,273.91 -144.25,372.71 89.54,98.82 144.25,229.68 144.25,372.71 0,305.92 -250.26,556.21 -556.19,556.21l-1370.09 0 0 -366.97 1370.09 0c51.66,0 98.91,-21.42 133.36,-55.86 34.45,-34.45 55.87,-81.72 55.87,-133.38 0,-51.65 -21.42,-98.92 -55.87,-133.37 -34.45,-34.45 -81.7,-55.86 -133.36,-55.86l-1370.09 0 0 -366.96 1370.09 0c51.66,0 98.91,-21.4 133.36,-55.86 34.45,-34.45 55.87,-81.71 55.87,-133.37 0,-51.66 -21.42,-98.92 -55.87,-133.37 -34.45,-34.44 -81.7,-55.86 -133.36,-55.86l-1370.09 0 0 -366.97zm9719.17 928.25l0 0c0,162.18 -44.29,335.44 -169.96,445.27 -158.64,138.66 -393.81,175.23 -597.24,175.23 -203.42,0 -438.61,-36.57 -597.24,-175.23 -128.94,-112.71 -169.97,-279.85 -169.97,-445.27 0,-165.4 41.03,-332.54 169.97,-445.25 158.63,-138.66 393.82,-175.24 597.24,-175.24 203.43,0 438.6,36.58 597.24,175.24 125.67,109.83 169.96,283.08 169.96,445.25zm366.98 0l0 0c0,-679.3 -507.87,-987.43 -1134.18,-987.43 -626.31,0 -1134.18,308.14 -1134.18,987.43 0,678.04 506.35,987.44 1134.18,987.44 626.31,0 1134.18,-308.12 1134.18,-987.44zm1606.89 -182.82l0 0c305.94,0 556.2,250.28 556.2,556.19 0,305.92 -250.32,556.21 -556.2,556.21l-1302.12 0 0 -366.97 1302.12 0c51.66,0 98.92,-21.42 133.37,-55.86 34.45,-34.45 55.87,-81.72 55.87,-133.38 0,-51.65 -21.42,-98.92 -55.87,-133.37 -34.45,-34.45 -81.77,-55.86 -133.37,-55.86l-881.85 0c-305.87,0 -556.2,-250.27 -556.2,-556.19 0,-305.91 250.28,-556.2 556.2,-556.2l1302.14 0 0 366.97 -1302.14 0c-51.59,0 -98.91,21.42 -133.36,55.86 -34.45,34.45 -55.87,81.71 -55.87,133.37 0,51.66 21.42,98.92 55.87,133.37 34.45,34.46 81.7,55.86 133.36,55.86l881.85 0zm-5498.91 -745.43l0 0 638.13 1412.23 638.1 -1412.23 402.68 0 -839.46 1857.83 -402.68 0 -839.44 -1857.83 402.67 0zm-1726.57 1857.83l0 0 -402.69 0 -493.5 -745.44 11.16 0c305.94,0 556.2,-250.27 556.2,-556.19 0,-305.91 -250.26,-556.2 -556.2,-556.2l-1370.09 0 0 366.97 1370.09 0c51.66,0 98.92,21.42 133.37,55.86 34.45,34.45 55.86,81.71 55.86,133.37 0,51.66 -21.41,98.92 -55.86,133.37 -34.45,34.46 -81.71,55.86 -133.37,55.86l-1370.09 0 0 366.96 0 745.43 366.97 0 0 -745.43 551.89 0 493.48 745.44 440.09 0 839.45 -1857.83 402.69 0 839.45 1857.83 -402.68 0 -638.11 -1412.24 -638.11 1412.24z"/></svg></div>
-    <div><div class="fh">разделы</div><div class="fl"><a href="#product">Продукт</a><a href="#quality">Качество</a><a href="#price">Цена</a><a href="#logistics">Логистика</a></div></div>
-    <div><div class="fh">КОНТАКТЫ</div><div class="fl"><a href="tel:+79036412728">8 (903) 641-27-28</a><a href="mailto:kostikov@bravos.coffee">kostikov@bravos.coffee</a><span>г. Рязань, Соборная площадь 9</span></div></div>
-    <div><div class="fh">ДОКУМЕНТЫ</div><div class="fl"><a href="#">Документы и сертификаты</a><a href="mailto:kostikov@bravos.coffee">kostikov@bravos.coffee</a><a href="#">Реквизиты компании</a></div></div>
+    <div><div class="fh">КОНТАКТЫ</div><div class="fl"><div class="footer-manager"><span>Алексей Костиков</span><br><a href="tel:+79036412728">8 (903) 641-27-28</a></div><a href="mailto:kostikov@bravos.coffee">kostikov@bravos.coffee</a><span>г. Рязань, Соборная площадь 9</span></div></div>
+    <div><div class="fh">ДОКУМЕНТЫ</div><div class="fl"><a href="#">Документы и сертификаты</a><a href="#">Реквизиты компании</a><a href="#politika" data-policy-popup aria-haspopup="dialog" aria-controls="politika">Политика конфиденциальности</a></div></div>
   </div>
-  <div class="fbot"><span>© BRAVOS, 2026</span><div><a href="#">Политика конфиденциальности</a><a href="#">Согласие на обработку персональных данных</a></div></div>
+  <div class="fbot"><span>© BRAVOS, 2026</span><div><a href="https://coffee-tea-bravos.ru/include/licenses_detail/" target="_blank" rel="noopener noreferrer">Конфиденциальность</a><a href="https://coffee-tea-bravos.ru/include/offer_detail/" target="_blank" rel="noopener noreferrer">Оферта</a><a href="https://coffee-tea-bravos.ru/include/agreement/" target="_blank" rel="noopener noreferrer">Соглашение</a></div></div>
 </footer>
+
+<dialog class="policy-dialog" id="politika" aria-labelledby="policy-title">
+  <button class="policy-close" type="button" aria-label="Закрыть политику конфиденциальности" title="Закрыть">&#215;</button>
+  <div class="policy-content">
+    <h2 id="policy-title" tabindex="-1">Политика конфиденциальности</h2>
+    <p>Соблюдение Вашей конфиденциальности важно для нас. По этой причине, мы разработали Политику Конфиденциальности, которая описывает, как мы используем и храним Вашу информацию. Пожалуйста, ознакомьтесь с нашими правилами соблюдения конфиденциальности и сообщите нам, если у вас возникнут какие-либо вопросы.</p>
+    <h3>Сбор и использование персональной информации</h3>
+    <p>Под персональной информацией понимаются данные, которые могут быть использованы для идентификации определенного лица либо связи с ним.<br>От вас может быть запрошено предоставление вашей персональной информации в любой момент, когда вы связываетесь с нами.<br>Ниже приведены некоторые примеры типов персональной информации, которую мы можем собирать, и как мы можем использовать такую информацию.<br><br>Какую персональную информацию мы собираем:</p>
+    <ul><li>Когда вы оставляете заявку на сайте, мы можем собирать различную информацию, включая ваши имя, номер телефона, адрес электронной почты и т.д.</li></ul>
+    <p>Как мы используем вашу персональную информацию:</p>
+    <ul>
+      <li>Собираемая нами персональная информация позволяет нам связываться с вами и сообщать об уникальных предложениях, акциях и других мероприятиях и ближайших событиях.</li>
+      <li>Время от времени, мы можем использовать вашу персональную информацию для отправки важных уведомлений и сообщений.</li>
+      <li>Мы также можем использовать персональную информацию для внутренних целей, таких как проведения аудита, анализа данных и различных исследований в целях улучшения услуг предоставляемых нами и предоставления Вам рекомендаций относительно наших услуг.</li>
+      <li>Если вы принимаете участие в розыгрыше призов, конкурсе или сходном стимулирующем мероприятии, мы можем использовать предоставляемую вами информацию для управления такими программами.</li>
+    </ul>
+    <h3>Раскрытие информации третьим лицам</h3>
+    <p>Мы не раскрываем полученную от Вас информацию третьим лицам.<br><br>Исключения:</p>
+    <ul>
+      <li>В случае если необходимо — в соответствии с законом, судебным порядком, в судебном разбирательстве, и/или на основании публичных запросов или запросов от государственных органов на территории РФ — раскрыть вашу персональную информацию. Мы также можем раскрывать информацию о вас если мы определим, что такое раскрытие необходимо или уместно в целях безопасности, поддержания правопорядка, или иных общественно важных случаях.</li>
+      <li>В случае реорганизации, слияния или продажи мы можем передать собираемую нами персональную информацию соответствующему третьему лицу – правопреемнику.</li>
+    </ul>
+    <h3>Защита персональной информации</h3>
+    <p>Мы предпринимаем меры предосторожности — включая административные, технические и физические — для защиты вашей персональной информации от утраты, кражи, и недобросовестного использования, а также от несанкционированного доступа, раскрытия, изменения и уничтожения.</p>
+    <h3>Соблюдение вашей конфиденциальности на уровне компании</h3>
+    <p>Для того чтобы убедиться, что ваша персональная информация находится в безопасности, мы доводим нормы соблюдения конфиденциальности и безопасности до наших сотрудников, и строго следим за исполнением мер соблюдения конфиденциальности.</p>
+  </div>
+</dialog>
+
+<aside class="stickycta" id="stickyCta" aria-label="Запросить оптовый прайс" aria-hidden="true" inert>
+  <div class="stickycta-inner">
+    <h2 class="tt">Жарим кофе<br>для&nbsp;бизнеса</h2>
+    <div class="stickycta-benefit"><img src="assets/lead-wallet.svg" alt="" aria-hidden="true"><h5>Прайс<br>под&nbsp;ваш объём</h5></div>
+    <div class="stickycta-benefit"><img src="assets/lead-profile.svg" alt="" aria-hidden="true"><h5>Личный<br>менеджер</h5></div>
+    <div class="stickycta-benefit"><img src="assets/lead-buy.svg" alt="" aria-hidden="true"><h5>Рекомендации<br>по&nbsp;кофе</h5></div>
+    <a class="btn" href="#final">Получить прайс</a>
+  </div>
+</aside>
 
 <div class="toast" id="toast"></div>
 
@@ -1292,6 +1413,8 @@ var hero=document.getElementById('hero');
 var heroLogo=document.querySelector('.hero-logo');
 var stickyCta=document.getElementById('stickyCta');
 var finalEl=document.getElementById('final');
+var navScrollPosition=window.scrollY;
+var navShown=false;
 
 function raf(fn){window.requestAnimationFrame(fn);}
 
@@ -1299,8 +1422,17 @@ function onScroll(){
   var heroH = hero.offsetHeight;
   var sy = window.scrollY;
 
-  // nav solid after leaving hero
-  if(sy > heroH*0.7){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+  {
+    var scrollDelta=sy-navScrollPosition;
+    if(Math.abs(scrollDelta)>=4){
+      navShown=scrollDelta<0 && sy>0;
+      navScrollPosition=sy;
+    }
+    if(sy<=0){navShown=false;navScrollPosition=0;}
+    nav.classList.toggle('scrolled',navShown);
+    nav.inert=!navShown;
+    nav.setAttribute('aria-hidden',String(!navShown));
+  }
 
   // big logo fade across hero scroll
   if(heroLogo){
@@ -1308,16 +1440,17 @@ function onScroll(){
     heroLogo.style.opacity = String(1 - p);
   }
 
-  // sticky bottom CTA: show after hero, hide over final form
-  var finalTop = finalEl.getBoundingClientRect().top + sy;
-  if(stickyCta){
-    if(sy > heroH*0.6 && sy < finalTop - 200){ stickyCta.classList.add('show'); } else { stickyCta.classList.remove('show'); }
-  }
-
   updateJack('jack1','track1');
   updateJack('jack2','track2');
   updateMonths();
   updateSheetParallax();
+
+  if(stickyCta){
+    var showCta=hero.getBoundingClientRect().bottom<=0 && finalEl.getBoundingClientRect().top>=window.innerHeight;
+    stickyCta.classList.toggle('show',showCta);
+    stickyCta.setAttribute('aria-hidden',String(!showCta));
+    stickyCta.inert=!showCta;
+  }
 }
 
 function updateJack(wrapId, trackId){
@@ -1358,6 +1491,10 @@ function updateMonths(){
 
 function updateSheetParallax(){
   var sheets=document.querySelectorAll('.pillar > .sheet,.faq,.final');
+  if(window.innerWidth<=1100){
+    sheets.forEach(function(sheet){sheet.style.setProperty('--sheet-rise','0px');});
+    return;
+  }
   var viewport=window.innerHeight;
   var enterAt=viewport*0.95;
   var settleAt=viewport*0.12;
@@ -1424,13 +1561,14 @@ window.addEventListener('resize',function(){
 
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click',function(e){
+    if(a.hasAttribute('data-policy-popup')) return;
     var id=a.getAttribute('href'); if(id.length<2) return;
     var t=document.querySelector(id); if(!t) return;
     e.preventDefault();
     var heading=t.querySelector('.sheet-head,.final-grid') || (t.classList.contains('faq') ? t.querySelector('h2') : t);
     var sheet=heading.closest('.sheet,.faq,.final');
     var shift=sheet ? new DOMMatrixReadOnly(getComputedStyle(sheet).transform).m42 : 0;
-    var settledShift=window.innerWidth<=900 ? -36 : -84;
+    var settledShift=window.innerWidth<=1100 ? 0 : -84;
     var headerHeight=document.getElementById('nav').getBoundingClientRect().height;
     var y=heading.getBoundingClientRect().top+window.scrollY-headerHeight-24;
     if(sheet) y+=settledShift-shift;
@@ -1462,7 +1600,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     if(sum && i===3) sum.textContent='за 3 месяца';
   });
   var dark=document.querySelector('.logi-card.dark');
-  if(dark && !dark.querySelector('.carrier-logos')){
+  if(dark && !dark.querySelector('.carrier-logos,.carrier-panel')){
     dark.insertAdjacentHTML('beforeend','<div class="carrier-logos"><img src="assets/logo-pek.png" alt="ПЭК"><img src="assets/logo-delovye-linii.png" alt="Деловые линии"><img src="assets/logo-cdek.png" alt="СДЭК"></div>');
   }
   var promo=document.querySelector('.promo-coral');
@@ -1520,7 +1658,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
   }
 
   var coralLogi=document.querySelector('.logi-card.coral');
-  if(coralLogi && !coralLogi.querySelector('.logi-truck,.delivery-bolt')){
+  if(coralLogi && !coralLogi.classList.contains('delivery-time') && !coralLogi.querySelector('.logi-truck,.delivery-bolt')){
     var logiTruck=document.createElement('img');
     logiTruck.className='logi-truck';
     logiTruck.src='assets/price-arrow.svg';
@@ -1574,15 +1712,16 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
   var support=document.querySelector('#support .support-cards');
   if(support){
     var cards=[
-      ['Сначала попробуете — потом закажете','Высылаем пробники, чтобы вы могли попробовать кофе на своём оборудовании<br>и&nbsp;выбрать подходящий вариант','Frame%20530.webp'],
+      ['Отправим кофе на пробу','Высылаем пробники, чтобы вы могли попробовать кофе на своём оборудовании<br>и&nbsp;выбрать подходящий вариант','support-sample-box.webp'],
       ['Подберём кофе под вашу задачу','Расскажите о меню, способе приготовления и объёме закупки — предложим подходящие варианты и объясним, чем они отличаются','Frame%20531.webp'],
       ['Настроим под выбранный кофе','Для крупных оптовых клиентов выезжаем на место и полностью настраиваем оборудование: кофемашину, кофемолку, параметры приготовления и рецептуру','Frame%20533.webp'],
-      ['Передадим всё необходимое команде','Дадим материалы по кофе, рецептурам и настройке, которые можно использовать<br>для&nbsp;обучения новых бариста и в ежедневной работе','Frame%20484.png'],
-      ['Добавим всё необходимое к заказу','Вместе с кофе можно заказать всё, что регулярно нужно заведению: чай, сиропы, топпинги, смеси и расходные материалы','support-order-extras.png'],
-      ['Выпустим кофе под вашим брендом','Производим кофе под СТМ и готовим дрипы с вашим брендингом — для продажи, подарков или продвижения бизнеса','Frame%20532.webp']
+      ['Передадим всё необходимое команде','Дадим материалы по кофе, рецептурам и настройке, которые можно использовать<br>для&nbsp;обучения новых бариста и в ежедневной работе','support-team-training.webp'],
+      ['Добавим всё необходимое к заказу','Вместе с кофе можно заказать всё, что регулярно нужно заведению: чай, сиропы, топпинги, смеси и расходные материалы','support-tea-supplies.webp'],
+      ['Выпустим кофе под вашим брендом','Производим кофе под СТМ и готовим дрипы с вашим брендингом — для продажи, подарков или продвижения бизнеса','support-private-label.webp']
     ];
     support.innerHTML=cards.map(function(card){
-      return '<article class="support-card"><div class="ph support-photo"><img src="assets/'+card[2]+'" alt="'+card[0]+'" loading="lazy"></div><div class="cap"><h3 class="tt">'+card[0]+'</h3><p class="p14 on-dark">'+card[1]+'</p></div></article>';
+      var media=card[2] ? '<div class="ph support-photo"><img src="assets/'+card[2]+'" alt="'+card[0]+'" loading="lazy" decoding="async"></div>' : '<div class="ph" aria-hidden="true"></div>';
+      return '<article class="support-card">'+media+'<div class="cap"><h3 class="tt">'+card[0]+'</h3><p class="p14 on-dark">'+card[1]+'</p></div></article>';
     }).join('');
   }
 })();
@@ -1596,13 +1735,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
   var index=0;
   var products=[{
     name:'Кофе Уганда Робуста, 1000 грамм',
-    description:'на примере кофе 1 упаковки<br>кофе Уганда Робуста 1000 грамм',
     image:'assets/cost-uganda-robusta.png',
-    retail:'2363 ₽',
-    prices:['2068 ₽','1880 ₽','1645 ₽','1438 ₽','1316₽']
+    retail:'2490 ₽',
+    prices:['1756 ₽','1596 ₽','1397 ₽','1221 ₽','1117 ₽']
   },{
     name:'Кофе Бразилия Сантос, 1000 грамм',
-    description:'на примере кофе 1 упаковки<br>кофе Бразилия Сантос 1000 грамм',
     image:'assets/cost-brazil-santos.png',
     retail:'2363 ₽',
     prices:['2068 ₽','1880 ₽','1645 ₽','1438 ₽','1316₽']
@@ -1610,7 +1747,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
   function selectProduct(direction){
     index=(index+direction+products.length)%products.length;
     var product=products[index];
-    comparison.querySelector('#cost-description').innerHTML=product.description;
     var jar=comparison.querySelector('.cost-jar');
     jar.src=product.image;
     jar.alt=product.name;
@@ -1633,48 +1769,96 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     observer.observe(chart);
   }else chart.classList.add('in');
 
-  var history=document.querySelector('.purchase-history');
-  var historyHead=history.querySelector('.purchase-history-head');
-  var region=history.querySelector('.history-scroll');
-  var sticky=history.querySelector('.history-sticky');
-  var sheet=history.closest('.sheet');
-  var viewport=history.querySelector('.history-viewport');
-  var track=history.querySelector('.history-track');
-  var maxShift=0, shift=0, scheduled=false;
-  function paint(){
-    var desktop=window.matchMedia('(min-width:901px)').matches;
-    var top=(desktop?historyHead:region).getBoundingClientRect().top;
-    var anchor=document.getElementById('nav').offsetHeight+(desktop?48:24);
-    var startAt=desktop?Math.max(anchor,window.innerHeight*.32):anchor;
-    // Keep the timeline below the header while its parent sheet moves upward.
-    var sheetTransform=getComputedStyle(sheet).transform;
-    var sheetOffset=sheetTransform==='none'?0:new DOMMatrixReadOnly(sheetTransform).m42;
-    sticky.style.top=(anchor-sheetOffset)+'px';
-    var progress=Math.min(Math.max((startAt-top)/Math.max(maxShift+100,1),0),1);
-    shift=progress*maxShift;
-    track.style.transform='translate3d('+(-shift).toFixed(2)+'px,0,0)';
-    scheduled=false;
-  }
-  function schedule(){
-    if(!scheduled){scheduled=true;requestAnimationFrame(paint);}
-  }
-  function measure(){
-    maxShift=Math.max(track.scrollWidth-viewport.clientWidth,0);
-    // Reserve the earlier heading-triggered scroll before the timeline pins.
-    var headLead=window.matchMedia('(min-width:901px)').matches?region.offsetTop-historyHead.offsetTop:0;
-    region.style.setProperty('--history-height',(312+maxShift+100+headLead)+'px');
-    schedule();
-  }
-  viewport.addEventListener('keydown',function(event){
-    if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
-    event.preventDefault();
-    shift=Math.min(Math.max(shift+(event.key==='ArrowRight'?160:-160),0),maxShift);
-    track.style.transform='translate3d('+(-shift)+'px,0,0)';
-  });
-  window.addEventListener('scroll',schedule,{passive:true});
-  window.addEventListener('resize',measure);
-  measure();
 })();
 </script>
+<script>
+(function(){
+  var dialog=document.getElementById('politika');
+  var opener=null;
+  function openPolicy(link){
+    if(dialog.open)return;
+    opener=link;
+    dialog.showModal();
+    document.body.classList.add('policy-open');
+    dialog.querySelector('.policy-content').scrollTop=0;
+    document.getElementById('policy-title').focus({preventScroll:true});
+  }
+  document.querySelectorAll('[data-policy-popup]').forEach(function(link){
+    link.addEventListener('click',function(event){event.preventDefault();openPolicy(link);});
+  });
+  dialog.querySelector('.policy-close').addEventListener('click',function(){dialog.close();});
+  dialog.addEventListener('click',function(event){
+    var rect=dialog.getBoundingClientRect();
+    if(event.target===dialog && (event.clientX<rect.left || event.clientX>rect.right || event.clientY<rect.top || event.clientY>rect.bottom))dialog.close();
+  });
+  dialog.addEventListener('close',function(){
+    document.body.classList.remove('policy-open');
+    if(opener)opener.focus({preventScroll:true});
+  });
+  if(window.location.hash==='#politika')openPolicy(document.querySelector('[data-policy-popup]'));
+})();
+</script>
+<script>
+(function(){
+  var videos=Array.prototype.slice.call(document.querySelectorAll('.quality-video'));
+  var visibleVideos=new Set();
+  function updatePlayback(video){
+    if(!document.hidden && visibleVideos.has(video)){
+      if(!video.getAttribute('src')){
+        video.src=video.dataset.videoSrc;
+        video.load();
+      }
+      var playback=video.play();
+      if(playback){playback.catch(function(){});}
+    }else{
+      video.pause();
+    }
+  }
+  if('IntersectionObserver' in window){
+    // No video source is fetched until its frame is actually on screen.
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && entry.intersectionRatio>=.15){visibleVideos.add(entry.target);}
+        else{visibleVideos.delete(entry.target);}
+        updatePlayback(entry.target);
+      });
+    },{threshold:[0,.15]});
+    videos.forEach(function(video){observer.observe(video);});
+  }else{
+    function checkVisibility(){
+      videos.forEach(function(video){
+        var rect=video.getBoundingClientRect();
+        if(rect.bottom>0 && rect.top<window.innerHeight){visibleVideos.add(video);}
+        else{visibleVideos.delete(video);}
+        updatePlayback(video);
+      });
+    }
+    window.addEventListener('scroll',checkVisibility,{passive:true});
+    window.addEventListener('resize',checkVisibility);
+    checkVisibility();
+  }
+  document.addEventListener('visibilitychange',function(){videos.forEach(updatePlayback);});
+})();
+</script>
+<script>
+(function(){
+  var shortWords=/(^|[^\p{L}\p{N}])(и|а|но|или|в|во|на|для|с|со|к|ко|у|о|об|от|до|по|за|из|без|под|над|при|не|ни|же|бы|ли|между|через|перед)[ \t]+(?=\S)/giu;
+  document.querySelectorAll('h1,h2,h3,h4,h5,p,.fq,.fl').forEach(function(element){
+    if(element.closest('#politika'))return;
+    var walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT);
+    var node;
+    while((node=walker.nextNode())){
+      var text=node.nodeValue;
+      var previous;
+      do{
+        previous=text;
+        text=text.replace(shortWords,'$1$2\u00a0');
+      }while(text!==previous);
+      if(text!==node.nodeValue)node.nodeValue=text;
+    }
+  });
+})();
+</script>
+<script src="assets/responsive.js"></script>
 </body>
 </html>
